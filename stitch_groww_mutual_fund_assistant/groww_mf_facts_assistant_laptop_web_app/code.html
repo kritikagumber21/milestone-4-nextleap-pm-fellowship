@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Groww - Mutual Fund Facts Assistant</title>
+<!-- Tailwind CSS CDN with forms & container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for Groww Brand Palette -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            groww: {
+              primary: '#00D09C',
+              primaryHover: '#00b887',
+              primaryLight: '#E6FAF5',
+              dark: '#44475B',
+              heading: '#1E2232',
+              muted: '#7C7E8C',
+              bgLight: '#F9FAFB',
+              border: '#E5E7EB',
+              tagBg: '#F3F4F6'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Stylesheet for fine layout refinements -->
+<style data-purpose="custom-scrollbar">
+    /* Subtle custom scrollbar for smooth desktop browsing */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F9FAFB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAFB] text-[#44475B] font-sans antialiased h-screen flex flex-col overflow-hidden select-none">
+<!-- BEGIN: MainHeader -->
+<header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between z-20 shrink-0" data-purpose="global-navigation">
+<!-- Left: Brand Logo & Navigation Links -->
+<div class="flex items-center space-x-8">
+<div class="flex items-center space-x-3">
+<!-- Groww Official Logo -->
+<img alt="Groww Logo" class="h-8 w-auto object-contain cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYJzw0z6kFkwIqP3EmUVJp4SYcr34djnc0_vZXkPO0dKOeXdOB9b6EbIeloqKGVzj1Bfaow5oXsVwQeFrqmYIFODLTaYC-v2CifRMWasCIljcsHmHMfntxy_KRb2jEYXrDRVeWITtplQyGX0Zgamf-EMKoj4Ms090q34Ldk4u2VIhW7n2EbfXR83XyXoV7xnQ0xld64WEZF2U0WCr1hVSeIJfcElO9t4N_mjGwqusR3je2uMlaknD3JfEoKk3Wzee2Om4"/>
+</div>
+<!-- Main Navigation Menu -->
+<nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-[#44475B]">
+<a class="hover:text-groww-primary transition-colors" href="#">Explore</a>
+<a class="hover:text-groww-primary transition-colors" href="#">Investments</a>
+<!-- Assistant Feature Badge -->
+<div class="flex items-center space-x-2 px-3 py-1 bg-emerald-50 rounded-full border border-emerald-100">
+<span class="w-2 h-2 rounded-full bg-[#00D09C] animate-pulse"></span>
+<span class="text-xs font-semibold text-emerald-800">MF Facts Assistant</span>
+</div>
+</nav>
+</div>
+<!-- Center: Global Quick Search -->
+<div class="flex-1 max-w-md mx-6">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full pl-10 pr-4 py-1.5 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#00D09C] focus:border-[#00D09C] text-[#1E2232] placeholder-gray-400" placeholder="Search direct mutual fund facts, schemes, SID details..." type="text"/>
+</div>
+</div>
+<!-- Right: Compliance Status & User Profile -->
+<div class="flex items-center space-x-4">
+<!-- Grounded Compliance Indicator -->
+<div class="hidden lg:flex items-center space-x-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium text-gray-600">
+<span class="w-2 h-2 rounded-full bg-[#00D09C]"></span>
+<span>SEBI / AMFI Grounded</span>
+</div>
+<!-- Notifications Icon -->
+<button class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors" title="Notifications">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- User Profile Avatar -->
+<div class="flex items-center space-x-2 pl-2 border-l border-gray-200">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-400 to-[#00D09C] flex items-center justify-center text-white text-xs font-bold shadow-sm">
+          AK
+        </div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: DashboardBody -->
+<div class="flex-1 flex overflow-hidden max-w-[1536px] w-full mx-auto" data-purpose="three-column-layout">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-[280px] bg-white border-r border-gray-200 flex flex-col shrink-0 overflow-y-auto" data-purpose="scheme-and-sources-sidebar">
+<!-- AMC Focus Section -->
+<div class="p-4 border-b border-gray-100">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Indexed Asset Manager</span>
+<span class="text-[10px] font-semibold text-[#00D09C] bg-[#E6FAF5] px-2 py-0.5 rounded">Active</span>
+</div>
+<div class="flex items-center space-x-3 p-2.5 rounded-lg border border-gray-100 bg-[#F9FAFB]">
+<div class="w-8 h-8 rounded-md bg-red-600 flex items-center justify-center text-white font-bold text-xs tracking-tight shadow-xs">
+            HDFC
+          </div>
+<div class="overflow-hidden">
+<h4 class="text-xs font-semibold text-[#1E2232] truncate">HDFC Mutual Fund</h4>
+<p class="text-[11px] text-gray-400 truncate">3 Schemes Active in Context</p>
+</div>
+</div>
+<!-- Available Schemes List -->
+<div class="mt-3 space-y-1">
+<div class="p-2 rounded-md hover:bg-gray-50 flex items-center justify-between cursor-pointer border border-transparent hover:border-gray-200 transition-all">
+<div class="truncate">
+<p class="text-xs font-medium text-gray-800 truncate">HDFC Top 100 Fund</p>
+<span class="text-[10px] text-gray-400">Large Cap · Direct Growth</span>
+</div>
+<span class="text-[10px] text-gray-400 font-mono">₹892.4</span>
+</div>
+<div class="p-2 rounded-md hover:bg-gray-50 flex items-center justify-between cursor-pointer border border-transparent hover:border-gray-200 transition-all">
+<div class="truncate">
+<p class="text-xs font-medium text-gray-800 truncate">HDFC Flexi Cap Fund</p>
+<span class="text-[10px] text-gray-400">Flexi Cap · Direct Growth</span>
+</div>
+<span class="text-[10px] text-gray-400 font-mono">₹1,745.2</span>
+</div>
+<div class="p-2 rounded-md bg-[#E6FAF5] border border-emerald-200 flex items-center justify-between cursor-pointer">
+<div class="truncate">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00D09C]"></span>
+<p class="text-xs font-semibold text-gray-900 truncate">HDFC ELSS Taxsaver</p>
+</div>
+<span class="text-[10px] text-emerald-700 pl-3">ELSS Tax Saving · Direct</span>
+</div>
+<span class="text-[10px] font-semibold text-emerald-700 font-mono">₹1,180.6</span>
+</div>
+</div>
+</div>
+<!-- Verified Public Sources Section -->
+<div class="p-4 border-b border-gray-100 flex-1">
+<h3 class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-3 flex items-center justify-between">
+<span>Ground Truth Documents</span>
+<span class="text-[10px] text-gray-400 font-normal">v2024.10</span>
+</h3>
+<div class="space-y-2">
+<!-- Document 1 -->
+<div class="p-2.5 rounded-lg border border-gray-100 bg-[#F9FAFB] hover:border-gray-300 transition-all">
+<div class="flex items-start space-x-2">
+<svg class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-[#1E2232] truncate">HDFC ELSS SID &amp; KIM</p>
+<p class="text-[10px] text-gray-400 truncate">Official Scheme Info Doc · Oct 2024</p>
+</div>
+</div>
+</div>
+<!-- Document 2 -->
+<div class="p-2.5 rounded-lg border border-gray-100 bg-[#F9FAFB] hover:border-gray-300 transition-all">
+<div class="flex items-start space-x-2">
+<svg class="w-4 h-4 text-blue-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-[#1E2232] truncate">Monthly Factsheet</p>
+<p class="text-[10px] text-gray-400 truncate">Portfolio &amp; TER Snapshot · Sep 2024</p>
+</div>
+</div>
+</div>
+<!-- Document 3 -->
+<div class="p-2.5 rounded-lg border border-gray-100 bg-[#F9FAFB] hover:border-gray-300 transition-all">
+<div class="flex items-start space-x-2">
+<svg class="w-4 h-4 text-purple-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-[#1E2232] truncate">SEBI Mutual Fund Regs</p>
+<p class="text-[10px] text-gray-400 truncate">Categorization Norms 2017/2021</p>
+</div>
+</div>
+</div>
+<!-- Document 4 -->
+<div class="p-2.5 rounded-lg border border-gray-100 bg-[#F9FAFB] hover:border-gray-300 transition-all">
+<div class="flex items-start space-x-2">
+<svg class="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-[#1E2232] truncate">AMFI Code of Conduct</p>
+<p class="text-[10px] text-gray-400 truncate">Objective Investor Information</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Regulatory Safeguard Guardrail Info -->
+<div class="p-4 bg-gray-50 border-t border-gray-200">
+<div class="flex items-center space-x-2 mb-2">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-[#00D09C]"></span>
+</span>
+<p class="text-xs font-semibold text-gray-800">Strict Facts-Only Scope</p>
+</div>
+<p class="text-[11px] leading-relaxed text-gray-500">
+          Personalized advice, return guarantees, &amp; PII (Aadhaar/PAN/OTP) requests are strictly restricted by compliance filters.
+        </p>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: CenterChatFeed -->
+<main class="flex-1 flex flex-col bg-[#F9FAFB] overflow-hidden" data-purpose="chat-feed-container">
+<!-- Top Assistant Header Bar -->
+<div class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-[#E6FAF5] flex items-center justify-center text-[#00D09C]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-sm font-bold text-[#1E2232]">Verified Scheme Knowledge Engine</h1>
+<p class="text-[11px] text-gray-400">Zero opinions · Direct factual citations from statutory disclosures</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">
+            Strict Non-Advisory Mode
+          </span>
+<button class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded" title="Clear chat session">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Messages Scroll Area -->
+<div class="flex-1 overflow-y-auto px-6 py-5 space-y-6" id="chat-messages-container">
+<!-- Welcome Hero Pill Banner -->
+<div class="bg-white rounded-xl border border-gray-200 p-5 shadow-xs">
+<div class="flex items-start space-x-3">
+<div class="w-9 h-9 rounded-lg bg-[#E6FAF5] flex items-center justify-center shrink-0 text-[#00D09C]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-sm font-semibold text-[#1E2232]">Welcome to Groww MF Facts Assistant</h2>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                Query verified factual details for mutual funds including statutory lock-in periods, Total Expense Ratios (TER), exit loads, benchmark classifications, and investment minimums directly from verified regulatory filings.
+              </p>
+<!-- Quick Prompt Pills -->
+<div class="mt-3 flex flex-wrap gap-2">
+<button class="text-[11px] px-3 py-1.5 bg-[#F9FAFB] hover:bg-gray-100 text-gray-700 font-medium rounded-full border border-gray-200 transition-colors flex items-center space-x-1.5">
+<span class="text-[#00D09C]">●</span>
+<span>Lock-in &amp; min SIP for HDFC ELSS?</span>
+</button>
+<button class="text-[11px] px-3 py-1.5 bg-[#F9FAFB] hover:bg-gray-100 text-gray-700 font-medium rounded-full border border-gray-200 transition-colors flex items-center space-x-1.5">
+<span class="text-[#00D09C]">●</span>
+<span>TER &amp; exit load for HDFC Flexi Cap?</span>
+</button>
+<button class="text-[11px] px-3 py-1.5 bg-[#F9FAFB] hover:bg-gray-100 text-gray-700 font-medium rounded-full border border-gray-200 transition-colors flex items-center space-x-1.5">
+<span class="text-amber-500">⚠</span>
+<span>Should I buy HDFC Top 100 for high returns?</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CONVERSATION INTERACTION 1: Factual Query & Cited Response -->
+<div class="space-y-3">
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[75%] bg-[#1E2232] text-white rounded-2xl rounded-tr-xs px-4 py-2.5 text-xs shadow-xs leading-relaxed">
+              What is the mandatory lock-in period and minimum SIP amount for HDFC ELSS Taxsaver Fund?
+            </div>
+</div>
+<!-- Assistant Response -->
+<div class="flex items-start space-x-3 max-w-[85%]">
+<div class="w-7 h-7 rounded-full bg-[#00D09C] flex items-center justify-center text-white shrink-0 text-xs font-bold shadow-xs">
+              G
+            </div>
+<div class="space-y-2">
+<div class="bg-white border border-gray-200 rounded-2xl rounded-tl-xs p-4 shadow-xs text-xs text-[#1E2232] leading-relaxed">
+<p>
+<strong>HDFC ELSS Taxsaver Fund</strong> has a mandatory statutory lock-in period of <strong>3 years</strong> from the allotment date of each unit, under Section 80C of the Income Tax Act. The minimum Systematic Investment Plan (SIP) amount specified by the scheme is <strong>₹500</strong> (and in multiples of ₹500 thereafter).
+                </p>
+<!-- Grounded Citation Box -->
+<div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px]">
+<div class="flex items-center space-x-2 text-gray-500">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-[#00D09C]"></span>
+<span>Source: <strong>HDFC ELSS SID Oct 2024</strong> (Section II, Page 14)</span>
+</div>
+<a class="text-[#00D09C] hover:underline font-semibold flex items-center space-x-1" href="#">
+<span>View Filing</span>
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CONVERSATION INTERACTION 2: Refusal of Advice (Safe Guardrail) -->
+<div class="space-y-3">
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[75%] bg-[#1E2232] text-white rounded-2xl rounded-tr-xs px-4 py-2.5 text-xs shadow-xs leading-relaxed">
+              Should I buy HDFC Top 100 right now? Will it give better returns than Flexi Cap?
+            </div>
+</div>
+<!-- Assistant Response (Refusal) -->
+<div class="flex items-start space-x-3 max-w-[85%]">
+<div class="w-7 h-7 rounded-full bg-amber-500 flex items-center justify-center text-white shrink-0 text-xs font-bold shadow-xs">
+              !
+            </div>
+<div class="space-y-2">
+<div class="bg-white border border-amber-200 rounded-2xl rounded-tl-xs p-4 shadow-xs text-xs text-[#1E2232] leading-relaxed">
+<div class="flex items-center space-x-2 mb-2 text-amber-800 font-semibold text-xs">
+<svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Non-Advisory Guardrail Triggered</span>
+</div>
+<p class="text-gray-700">
+                  I cannot provide buy, sell, or recommendation advice, nor can I forecast future returns. Per <strong>SEBI (Investment Advisers) Regulations</strong>, this assistant delivers strictly factual information from filed documents.
+                </p>
+<p class="text-gray-600 mt-2 text-[11px]">
+                  Factual comparison: <strong>HDFC Top 100 Fund</strong> benchmarks against NIFTY 100 TRI (minimum 80% Large Cap allocation), while <strong>HDFC Flexi Cap Fund</strong> benchmarks against NIFTY 500 TRI with dynamic allocation across Large, Mid, and Small Cap equities.
+                </p>
+<!-- Grounded Citation Box -->
+<div class="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between text-[11px]">
+<span class="text-gray-500">Ref: SEBI Circular SEBI/HO/IMD/DF3/CIR/P/2017/114</span>
+<a class="text-amber-700 hover:underline font-medium" href="#">SEBI Investor Guidance</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CONVERSATION INTERACTION 3: Detailed Direct TER & Exit Load Breakdown -->
+<div class="space-y-3">
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[75%] bg-[#1E2232] text-white rounded-2xl rounded-tr-xs px-4 py-2.5 text-xs shadow-xs leading-relaxed">
+              What is the current expense ratio and exit load structure for HDFC Flexi Cap Direct Plan?
+            </div>
+</div>
+<!-- Assistant Response -->
+<div class="flex items-start space-x-3 max-w-[85%]">
+<div class="w-7 h-7 rounded-full bg-[#00D09C] flex items-center justify-center text-white shrink-0 text-xs font-bold shadow-xs">
+              G
+            </div>
+<div class="space-y-2 w-full">
+<div class="bg-white border border-gray-200 rounded-2xl rounded-tl-xs p-4 shadow-xs text-xs text-[#1E2232] leading-relaxed">
+<p class="mb-3">
+                  Here are the factual expense and exit terms for <strong>HDFC Flexi Cap Fund (Direct Plan - Growth)</strong> as per the latest monthly disclosure:
+                </p>
+<!-- Data Table Snippet -->
+<div class="rounded-lg border border-gray-100 overflow-hidden mb-3">
+<table class="min-w-full text-left text-xs divide-y divide-gray-100">
+<thead class="bg-gray-50 text-gray-500">
+<tr>
+<th class="py-1.5 px-3 font-semibold">Parameter</th>
+<th class="py-1.5 px-3 font-semibold">Statutory Disclosure</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-gray-700 bg-white">
+<tr>
+<td class="py-1.5 px-3 font-medium text-gray-900">Total Expense Ratio (TER)</td>
+<td class="py-1.5 px-3 font-semibold text-emerald-700">0.78% (Direct)</td>
+</tr>
+<tr>
+<td class="py-1.5 px-3 font-medium text-gray-900">Exit Load</td>
+<td class="py-1.5 px-3">1.00% if redeemed ≤ 1 year; Nil thereafter</td>
+</tr>
+<tr>
+<td class="py-1.5 px-3 font-medium text-gray-900">Turnover Ratio</td>
+<td class="py-1.5 px-3">34.20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Grounded Citation Box -->
+<div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px]">
+<div class="flex items-center space-x-1.5 text-gray-500">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00D09C]"></span>
+<span>Source: <strong>HDFC AMC Factsheet September 30, 2024</strong> (Page 28)</span>
+</div>
+<span class="text-gray-400 font-mono text-[10px]">Verified Hash: #c4d7b2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sticky Input Bar -->
+<div class="p-4 bg-white border-t border-gray-200" data-purpose="chat-input-bar">
+<div class="max-w-4xl mx-auto">
+<div class="flex items-center bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-[#00D09C] focus-within:border-transparent transition-all">
+<!-- Attachment Icon for Scheme Docs -->
+<button class="p-1.5 text-gray-400 hover:text-gray-600 rounded transition-colors" title="Reference document">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Query Input -->
+<input class="flex-1 bg-transparent border-0 focus:ring-0 text-xs text-[#1E2232] placeholder-gray-400 px-3 py-1" placeholder="Ask a factual question (e.g. exit load, benchmark, asset allocation)..." type="text"/>
+<!-- Send Query Button -->
+<button class="px-4 py-2 bg-[#00D09C] hover:bg-groww-primaryHover text-white rounded-lg text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-colors">
+<span>Ask Facts</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Compliance & Privacy Footnote -->
+<div class="mt-2 text-center">
+<p class="text-[10px] text-gray-400">
+              Groww Mutual Fund Facts Assistant does not provide investment recommendations. Do not share confidential credentials or PAN/Aadhaar details.
+            </p>
+</div>
+</div>
+</div>
+</main>
+<!-- END: CenterChatFeed -->
+<!-- BEGIN: RightSidebar -->
+<aside class="w-[300px] bg-white border-l border-gray-200 flex flex-col shrink-0 overflow-y-auto" data-purpose="scheme-snapshot-sidebar">
+<!-- Current Active Scheme Header -->
+<div class="p-4 border-b border-gray-100">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Context Scheme Snapshot</span>
+<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Verified Doc</span>
+</div>
+<h3 class="text-sm font-bold text-[#1E2232] mt-1">HDFC ELSS Taxsaver</h3>
+<p class="text-[11px] text-gray-400">Equity Linked Savings Scheme (ELSS)</p>
+</div>
+<!-- Quick Metrics Overview -->
+<div class="p-4 border-b border-gray-100 space-y-3">
+<!-- Metric Item 1 -->
+<div class="flex items-center justify-between py-1 border-b border-gray-50">
+<span class="text-xs text-gray-500">Lock-in Period</span>
+<span class="text-xs font-bold text-gray-800">3 Years (Statutory)</span>
+</div>
+<!-- Metric Item 2 -->
+<div class="flex items-center justify-between py-1 border-b border-gray-50">
+<span class="text-xs text-gray-500">Riskometer Level</span>
+<span class="inline-flex items-center space-x-1 text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded">
+<span>Very High</span>
+</span>
+</div>
+<!-- Metric Item 3 -->
+<div class="flex items-center justify-between py-1 border-b border-gray-50">
+<span class="text-xs text-gray-500">Benchmark Index</span>
+<span class="text-xs font-medium text-gray-800">NIFTY 500 TRI</span>
+</div>
+<!-- Metric Item 4 -->
+<div class="flex items-center justify-between py-1 border-b border-gray-50">
+<span class="text-xs text-gray-500">Direct Expense Ratio</span>
+<span class="text-xs font-bold text-emerald-700">1.12%</span>
+</div>
+<!-- Metric Item 5 -->
+<div class="flex items-center justify-between py-1 border-b border-gray-50">
+<span class="text-xs text-gray-500">Min Initial SIP</span>
+<span class="text-xs font-semibold text-gray-800">₹500</span>
+</div>
+<!-- Metric Item 6 -->
+<div class="flex items-center justify-between py-1">
+<span class="text-xs text-gray-500">Fund Size (AUM)</span>
+<span class="text-xs font-mono font-medium text-gray-800">₹14,920 Cr</span>
+</div>
+</div>
+<!-- Fund Manager & Inception -->
+<div class="p-4 border-b border-gray-100">
+<h4 class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-2">Fund Details</h4>
+<div class="space-y-2 text-xs">
+<div class="flex justify-between">
+<span class="text-gray-500">Fund Manager:</span>
+<span class="font-medium text-gray-800">Roshi Jain</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Inception Date:</span>
+<span class="font-medium text-gray-800">31 Mar 1996</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-500">Tax Exemption:</span>
+<span class="font-medium text-[#00D09C]">Sec 80C Eligible</span>
+</div>
+</div>
+</div>
+<!-- Regulatory Statutory Disclaimer Card -->
+<div class="p-4 m-4 rounded-xl bg-gray-50 border border-gray-200">
+<div class="flex items-center space-x-2 text-xs font-bold text-gray-700 mb-1.5">
+<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>AMFI / SEBI Notice</span>
+</div>
+<p class="text-[11px] leading-relaxed text-gray-500">
+          Mutual fund investments are subject to market risks, read all scheme related documents carefully. Past performance does not guarantee future returns.
+        </p>
+</div>
+</aside>
+<!-- END: RightSidebar -->
+</div>
+<!-- END: DashboardBody -->
+</body></html>
